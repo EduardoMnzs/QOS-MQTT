@@ -44,12 +44,16 @@ function iniciarSubscriber() {
     if (!meta) return;
 
     const payload = msgBuffer.toString();
-    const duplicada = verificarDuplicata(topico, payload);
+    // packet.dup = true quando o broker reenvia uma mensagem QoS 1 por falta de ACK
+    const duplicadaMqtt  = packet.dup === true;
+    const duplicadaCache = verificarDuplicata(topico, payload);
+    const duplicada      = duplicadaMqtt || duplicadaCache;
 
     if (duplicada) {
-      console.warn(`[MQTT] DUPLICADA detectada em ${topico}`);
+      const motivo = duplicadaMqtt ? "flag dup=true (MQTT)" : "payload repetido (cache)";
+      console.warn(`[MQTT] DUPLICADA [${motivo}] em ${topico}`);
     } else {
-      console.log(`[MQTT] Recebida em ${topico} (QoS ${meta.qos}):`, payload.substring(0, 80));
+      console.log(`[MQTT] Recebida em ${topico} (QoS ${meta.qos}): ${payload.substring(0, 80)}`);
     }
 
     try {
@@ -59,8 +63,12 @@ function iniciarSubscriber() {
     }
   });
 
-  client.on("error", (err) => console.error("[MQTT] Erro:", err.message));
-  client.on("offline", () => console.warn("[MQTT] Subscriber offline."));
+  client.on("reconnect", () => {
+    console.log("[MQTT] Reconectado. Mensagens pendentes (QoS 1/2) serao entregues pelo broker.");
+  });
+  client.on("error",   (err) => console.error("[MQTT] Erro:", err.message));
+  client.on("offline", () => console.warn("[MQTT] Subscriber OFFLINE — QoS 0 serao PERDIDAS, QoS 1/2 ficam na fila do broker."));
+  client.on("close",   () => console.warn("[MQTT] Conexao encerrada."));
 
   return client;
 }

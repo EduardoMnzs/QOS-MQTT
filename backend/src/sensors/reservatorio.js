@@ -13,9 +13,15 @@ function iniciarSensorReservatorio() {
     clean: false,
   });
 
+  let iniciado = false;
+
   client.on("connect", () => {
     console.log("[AGUA] Sensor de Reservatorio conectado (QoS 1)");
+    if (iniciado) return;
+    iniciado = true;
+
     setInterval(async () => {
+      if (!client.connected) return;
       const nivel = Math.round(10 + Math.random() * 90);
       const payload = JSON.stringify({
         sensor: "reservatorio",
@@ -34,7 +40,9 @@ function iniciarSensorReservatorio() {
     }, INTERVALO_MS);
   });
 
-  client.on("error", (err) => console.error("[AGUA] Erro MQTT:", err.message));
+  client.on("reconnect", () => console.log("[AGUA] Reconectando... (QoS 1: broker reenviara mensagens pendentes)"));
+  client.on("offline",   () => console.warn("[AGUA] Sensor offline."));
+  client.on("error",     (err) => console.error("[AGUA] Erro MQTT:", err.message));
   return client;
 }
 

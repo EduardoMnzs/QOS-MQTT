@@ -17,9 +17,15 @@ function iniciarSensorTemperatura() {
     clean: true,
   });
 
+  let iniciado = false;
+
   client.on("connect", () => {
     console.log("[TEMP] Sensor de Temperatura conectado (QoS 0)");
+    if (iniciado) return;
+    iniciado = true;
+
     setInterval(async () => {
+      if (!client.connected) return;
       const payload = JSON.stringify({
         sensor: "temperatura",
         valor: parseFloat(gerarTemperatura()),
@@ -37,7 +43,9 @@ function iniciarSensorTemperatura() {
     }, INTERVALO_MS);
   });
 
-  client.on("error", (err) => console.error("[TEMP] Erro MQTT:", err.message));
+  client.on("reconnect", () => console.log("[TEMP] Reconectando..."));
+  client.on("offline",   () => console.warn("[TEMP] Sensor offline."));
+  client.on("error",     (err) => console.error("[TEMP] Erro MQTT:", err.message));
   return client;
 }
 
