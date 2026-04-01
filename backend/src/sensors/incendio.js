@@ -1,4 +1,4 @@
-﻿require("dotenv").config({ path: require("path").resolve(__dirname, "../../.env") });
+require("dotenv").config({ path: require("path").resolve(__dirname, "../../.env") });
 const mqtt = require("mqtt");
 const { BROKER_URL } = require("../config/mqtt");
 const { Publicacao } = require("../models");

@@ -1,4 +1,4 @@
-﻿const { Leitura, Publicacao } = require("../models");
+const { Leitura, Publicacao } = require("../models");
 
 const SENSORES = [
   { nome: "temperatura", topico: "estufa/temp/ambiente",    qos: 0 },

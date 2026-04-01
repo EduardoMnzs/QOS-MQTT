@@ -1,4 +1,4 @@
-﻿const { Router } = require("express");
+const { Router } = require("express");
 const { listar, listarPorSensor } = require("../controllers/leituraController");
 
 const router = Router();

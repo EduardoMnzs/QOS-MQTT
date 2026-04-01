@@ -1,4 +1,4 @@
-﻿export function getRelatorio() {
+export function getRelatorio() {
   return fetch("/api/relatorio").then((r) => r.json());
 }
 

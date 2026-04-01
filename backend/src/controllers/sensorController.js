@@ -1,4 +1,4 @@
-﻿const { dispararAlerta } = require("../sensors/incendio");
+const { dispararAlerta } = require("../sensors/incendio");
 
 async function disparar(_req, res) {
   try {

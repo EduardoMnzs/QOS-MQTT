@@ -1,4 +1,4 @@
-﻿require("dotenv").config();
+require("dotenv").config();
 const mqtt = require("mqtt");
 const { BROKER_URL } = require("../config/mqtt");
 const { Leitura } = require("../models");

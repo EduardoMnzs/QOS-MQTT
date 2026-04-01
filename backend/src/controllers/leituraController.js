@@ -1,4 +1,4 @@
-﻿const { Leitura } = require("../models");
+const { Leitura } = require("../models");
 const { Op } = require("sequelize");
 
 async function listar(req, res) {

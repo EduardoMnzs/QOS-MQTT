@@ -1,4 +1,4 @@
-﻿import { useState } from "react";
+import { useState } from "react";
 import { Thermometer, Droplets, Flame, Zap } from "lucide-react";
 import { dispararIncendio } from "../api";
 

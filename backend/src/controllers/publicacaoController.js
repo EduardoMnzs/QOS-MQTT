@@ -1,4 +1,4 @@
-﻿const { Publicacao } = require("../models");
+const { Publicacao } = require("../models");
 
 async function listar(req, res) {
   try {

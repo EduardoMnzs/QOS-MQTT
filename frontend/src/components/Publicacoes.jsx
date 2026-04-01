@@ -1,4 +1,4 @@
-﻿import { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Thermometer, Droplets, Flame, SendHorizontal } from "lucide-react";
 import { getPublicacoes } from "../api";
 

@@ -1,4 +1,4 @@
-﻿import { useState } from "react";
+import { useState } from "react";
 import { BarChart3, ArrowDownToLine, SendHorizontal, Cpu, Sprout } from "lucide-react";
 import "./App.css";
 import Relatorio from "./components/Relatorio";
