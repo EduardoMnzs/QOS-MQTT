@@ -3,9 +3,9 @@ import { Thermometer, Droplets, Flame, SendHorizontal } from "lucide-react";
 import { getPublicacoes } from "../api";
 
 const ICONS = {
-  temperatura:  { Icon: Thermometer, color: "#fb923c" },
-  reservatorio: { Icon: Droplets,    color: "#38bdf8" },
-  incendio:     { Icon: Flame,       color: "#f87171" },
+  temperatura:  { Icon: Thermometer, color: "var(--muted)" },
+  reservatorio: { Icon: Droplets,    color: "var(--muted)" },
+  incendio:     { Icon: Flame,       color: "var(--red)" },
 };
 
 function fmt(ts) {

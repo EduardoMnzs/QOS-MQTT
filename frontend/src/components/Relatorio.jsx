@@ -3,10 +3,10 @@ import { Thermometer, Droplets, Flame, Signal } from "lucide-react";
 import { getRelatorio } from "../api";
 
 function getSensorMeta(nome) {
-  if (nome.includes("temp"))   return { Icon: Thermometer, color: "#fb923c", bg: "#2d1f0d" };
-  if (nome.includes("reserv") || nome.includes("agua")) return { Icon: Droplets, color: "#38bdf8", bg: "#0d1f2d" };
-  if (nome.includes("incend") || nome.includes("fogo")) return { Icon: Flame,       color: "#f87171", bg: "#2d1010" };
-  return { Icon: Signal, color: "#a78bfa", bg: "#1d1536" };
+  if (nome.includes("temp"))   return { Icon: Thermometer, color: "#ea580c", bg: "#fff7ed" };
+  if (nome.includes("reserv") || nome.includes("agua")) return { Icon: Droplets, color: "#0284c7", bg: "#e0f2fe" };
+  if (nome.includes("incend") || nome.includes("fogo")) return { Icon: Flame,       color: "#dc2626", bg: "#fee2e2" };
+  return { Icon: Signal, color: "var(--muted)", bg: "var(--surface2)" };
 }
 
 function QosBadge({ qos }) {
@@ -49,11 +49,11 @@ export default function Relatorio() {
       <div className="stat-grid">
         <div className="stat-card">
           <div className="label">Total Publicadas</div>
-          <div className="value" style={{ color: "var(--accent)" }}>{totPub}</div>
+          <div className="value">{totPub}</div>
         </div>
         <div className="stat-card">
           <div className="label">Total Recebidas</div>
-          <div className="value" style={{ color: "var(--green)" }}>{totLei}</div>
+          <div className="value">{totLei}</div>
         </div>
         <div className="stat-card">
           <div className="label">Duplicatas</div>
@@ -85,8 +85,8 @@ export default function Relatorio() {
                 <div className="progress-fill" style={{ width: `${w}%`, background: fillColor }} />
               </div>
               <div className="stats-row">
-                <div className="mini-stat"><div className="v" style={{ color:"var(--accent)" }}>{r.enviadas}</div><div className="l">Enviadas</div></div>
-                <div className="mini-stat"><div className="v" style={{ color:"var(--green)" }}>{r.recebidas}</div><div className="l">Recebidas</div></div>
+                <div className="mini-stat"><div className="v">{r.enviadas}</div><div className="l">Enviadas</div></div>
+                <div className="mini-stat"><div className="v">{r.recebidas}</div><div className="l">Recebidas</div></div>
                 <div className="mini-stat"><div className="v" style={{ color:"var(--yellow)" }}>{r.duplicadas}</div><div className="l">Duplicatas</div></div>
                 <div className="mini-stat"><div className="v" style={{ color:"var(--red)" }}>{r.perdidas}</div><div className="l">Perdidas</div></div>
               </div>
