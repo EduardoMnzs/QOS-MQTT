@@ -6,8 +6,8 @@ const SENSORES = [
   {
     nome: "temperatura",
     Icon: Thermometer,
-    color: "#fb923c",
-    bg: "#2d1f0d",
+    color: "#ea580c",
+    bg: "#fff7ed",
     topico: "estufa/temp/ambiente",
     intervalo: "5 segundos",
     qos: 0,
@@ -17,8 +17,8 @@ const SENSORES = [
   {
     nome: "reservatorio",
     Icon: Droplets,
-    color: "#38bdf8",
-    bg: "#0d1f2d",
+    color: "#0284c7",
+    bg: "#e0f2fe",
     topico: "estufa/agua/nivel",
     intervalo: "30 segundos",
     qos: 1,
@@ -28,8 +28,8 @@ const SENSORES = [
   {
     nome: "incendio",
     Icon: Flame,
-    color: "#f87171",
-    bg: "#2d1010",
+    color: "#dc2626",
+    bg: "#fee2e2",
     topico: "estufa/alerta/incendio",
     intervalo: "Evento",
     qos: 2,
